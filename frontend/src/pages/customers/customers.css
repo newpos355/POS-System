@@ -1,0 +1,8 @@
+/* Using mostly global variables and utilities from other pages */
+.btn-icon.view {
+  color: var(--text-primary);
+}
+.btn-icon.view:hover {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}

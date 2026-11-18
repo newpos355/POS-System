@@ -1,0 +1,340 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Title + period selector. Wraps on narrow screens so the tabs drop below the
+   title instead of getting clipped off the right edge. */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.period-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  padding: 4px;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.period-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.period-tab {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-muted, #64748B);
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.period-tab.active {
+  background: #16A34A;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* auto-fit lets the cards reflow at any width instead of forcing a fixed
+   6-across row that overflows on tablets/phones. */
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.charts-row.single {
+  grid-template-columns: 1fr;
+}
+
+.stat-card {
+  background-color: var(--surface, #FFFFFF);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border, #E2E8F0);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.bg-green-light { background-color: #DCFCE7; }
+.text-green { color: #16A34A; }
+
+.bg-blue-light { background-color: #DBEAFE; }
+.text-blue { color: #2563EB; }
+
+.bg-purple-light { background-color: #F3E8FF; }
+.text-purple { color: #9333EA; }
+
+.bg-red-light { background-color: #FEE2E2; }
+.text-red { color: #EF4444; }
+
+.text-orange { color: #F59E0B; }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-title {
+  color: var(--text-secondary, #64748B);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 2px;
+  margin-top: 0;
+}
+
+.stat-trend {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.stat-trend.positive { color: #16A34A; }
+.stat-trend.negative { color: #EF4444; }
+.stat-trend.neutral { color: #64748B; }
+
+.dashboard-card {
+  background-color: var(--surface, #FFFFFF);
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border, #E2E8F0);
+}
+
+.card-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-header-flex .card-title {
+  margin-bottom: 0;
+}
+
+.chart-card {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-container {
+  flex: 1;
+  min-height: 0;
+}
+
+/* min(100%, 400px) keeps the 400px column floor from forcing horizontal
+   scroll on phones narrower than 400px. */
+.dashboard-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 24px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: #F8FAFC;
+  color: #64748B;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.dashboard-table td {
+  padding: 16px;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 0.875rem;
+  color: #0F172A;
+}
+
+.dashboard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #F1F5F9;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.rank-1 { background-color: #FEF08A; color: #854D0E; }
+.rank-2 { background-color: #E2E8F0; color: #475569; }
+.rank-3 { background-color: #FED7AA; color: #9A3412; }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-completed {
+  background-color: #DCFCE7;
+  color: #16A34A;
+}
+
+.status-pending {
+  background-color: #FEF3C7;
+  color: #D97706;
+}
+
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+.text-primary { color: var(--primary, #16A34A); }
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-action {
+  background-color: white;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-action:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.mt-6 {
+  margin-top: 24px;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  /* min-width: 0 lets long money values wrap inside the card instead of
+     pushing the grid wider than the phone screen. */
+  .stat-info {
+    min-width: 0;
+  }
+
+  .stat-value {
+    font-size: 1.02rem;
+    overflow-wrap: break-word;
+  }
+
+  .dashboard-card {
+    padding: 14px;
+  }
+
+  .dashboard-table th,
+  .dashboard-table td {
+    padding: 10px 8px;
+  }
+
+  .chart-card {
+    height: 260px;
+  }
+}

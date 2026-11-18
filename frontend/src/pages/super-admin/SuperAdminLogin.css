@@ -1,0 +1,268 @@
+/* Super Admin Login Page - Slate Green Theme (Matching POS App Theme) */
+.sal-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background */
+.sal-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sal-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+}
+
+.sal-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #16a34a, transparent);
+  top: -20%;
+  left: -10%;
+  animation: orbFloat1 12s ease-in-out infinite;
+}
+
+.sal-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #15803d, transparent);
+  bottom: -15%;
+  right: -5%;
+  animation: orbFloat2 15s ease-in-out infinite;
+}
+
+.sal-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #22c55e, transparent);
+  top: 50%;
+  right: 30%;
+  opacity: 0.25;
+  animation: orbFloat3 10s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.05); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, -40px) scale(1.08); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 20px); }
+}
+
+/* Container */
+.sal-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Logo */
+.sal-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sal-logo-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 32px rgba(22, 163, 74, 0.4), 0 0 0 1px rgba(22, 163, 74, 0.3);
+}
+
+.sal-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sal-logo-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f8fafc;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.sal-logo-sub {
+  font-size: 0.72rem;
+  color: #22c55e;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Card */
+.sal-card {
+  width: 100%;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 28px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.15) inset;
+}
+
+.sal-card-header {
+  margin-bottom: 24px;
+}
+
+.sal-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f8fafc;
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+}
+
+.sal-subheading {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* Error banner */
+.sal-error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  font-size: 0.83rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+/* Form */
+.sal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sal-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sal-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.sal-input {
+  background: rgba(51, 65, 85, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #f8fafc;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  width: 100%;
+}
+
+.sal-input::placeholder {
+  color: #64748b;
+}
+
+.sal-input:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+}
+
+/* Submit */
+.sal-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 20px;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 200ms ease;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.4);
+  font-family: 'Inter', sans-serif;
+}
+
+.sal-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.5);
+}
+
+.sal-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sal-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: salSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes salSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.sal-footer {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
+}
+
+.sal-footer a {
+  color: #22c55e;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sal-footer a:hover {
+  color: #4ade80;
+}

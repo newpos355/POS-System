@@ -1,0 +1,748 @@
+.pos-layout {
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background, #F8FAFC);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.pos-layout.in-sidebar-layout {
+  height: calc(100vh - 96px);
+  max-height: calc(100vh - 96px);
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.pos-topbar {
+  height: 54px;
+  background-color: #0F172A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.pos-back-btn {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.pos-back-btn:hover {
+  color: #4ADE80;
+}
+
+.pos-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.pos-user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.875rem;
+  color: #94A3B8;
+}
+
+.pos-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pos-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Left Panel - Products */
+.pos-products-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  overflow: hidden;
+  background-color: #F8FAFC;
+}
+
+.pos-search-bar {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748B;
+  font-size: 1.25rem;
+}
+
+.pos-search-bar input {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+  background-color: white;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.pos-search-bar input:focus {
+  border-color: #16A34A;
+}
+
+.pos-categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.pos-categories::-webkit-scrollbar {
+  height: 4px;
+}
+
+.pos-categories::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 4px;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-btn:hover {
+  background-color: #F1F5F9;
+}
+
+.category-btn.active {
+  background-color: #16A34A;
+  color: white;
+  border-color: #16A34A;
+}
+
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  /* Without an explicit row size, a height-constrained grid (flex: 1 here,
+     max-height on mobile) divides its box equally among ALL rows — with 40+
+     products that crushed every card to a ~7px sliver. max-content pins each
+     row to its card's real height and lets the rest scroll. */
+  grid-auto-rows: max-content;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 4px;
+  align-content: start;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: #16A34A;
+}
+
+.product-img-wrapper {
+  position: relative;
+  height: 120px;
+  background-color: #F1F5F9;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-price {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background-color: rgba(15, 23, 42, 0.85);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #0F172A;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+/* Right Panel - Cart */
+.pos-cart-panel {
+  flex: 0 0 380px;
+  width: 380px;
+  background-color: white;
+  border-left: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cart-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FAFAFA;
+}
+
+.cart-header h2 {
+  font-size: 1rem;
+  margin: 0;
+  color: #0F172A;
+}
+
+.expand-cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: #F0FDF4;
+  border: 1px solid #86EFAC;
+  border-radius: 7px;
+  color: #15803D;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.expand-cart-btn:hover {
+  background-color: #DCFCE7;
+}
+
+/* Expanded cart: a full-height overlay drawer so a long order can be
+   reviewed in one look. On desktop it leaves the product grid visible on
+   the left (items can still be added while reviewing); on phones it covers
+   the whole screen. */
+.pos-cart-panel.expanded {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(100vw, 760px);
+  max-width: 100vw;
+  z-index: 2000;
+  border-left: 1px solid #E2E8F0;
+  box-shadow: -16px 0 48px rgba(15, 23, 42, 0.3);
+}
+
+.pos-cart-panel.expanded .cart-items {
+  flex: 1;
+  max-height: none;
+  min-height: 0;
+}
+
+.item-index {
+  color: #94A3B8;
+  font-weight: 700;
+}
+
+.clear-cart-btn {
+  background: none;
+  border: none;
+  color: #EF4444;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.clear-cart-btn:hover {
+  text-decoration: underline;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+
+.empty-cart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  padding: 24px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #E2E8F0;
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #0F172A;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-price {
+  color: #64748B;
+  font-size: 0.75rem;
+}
+
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #F8FAFC;
+  border-radius: 16px;
+  padding: 2px 6px;
+  margin: 0 8px;
+}
+
+.item-controls button {
+  background-color: white;
+  border: 1px solid #CBD5E1;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.item-qty {
+  font-weight: 600;
+  font-size: 0.85rem;
+  width: 16px;
+  text-align: center;
+}
+
+.item-total {
+  font-weight: 600;
+  color: #0F172A;
+  font-size: 0.85rem;
+  width: 60px;
+  text-align: right;
+}
+
+.remove-item-btn {
+  background: none;
+  border: none;
+  color: #EF4444;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.cart-customer {
+  padding: 10px 16px;
+  border-top: 1px solid #E2E8F0;
+  background-color: #FAFAFA;
+}
+
+.customer-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.85rem;
+  background-color: white;
+}
+
+.cart-totals {
+  padding: 12px 16px;
+  background-color: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.grand-total {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #16A34A;
+  margin-top: 8px;
+  margin-bottom: 0;
+  border-top: 1px dashed #CBD5E1;
+  padding-top: 8px;
+}
+
+.cart-actions {
+  padding: 12px 16px;
+  background-color: white;
+  border-top: 1px solid #E2E8F0;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.method-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #E2E8F0;
+  background-color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.method-btn.active {
+  background-color: #F0FDF4;
+  border-color: #16A34A;
+  color: #16A34A;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-hold {
+  flex: 1;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+.btn-pay {
+  flex: 2;
+  padding: 12px;
+  background-color: #16A34A;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-pay:hover:not(:disabled) {
+  background-color: #15803D;
+}
+
+.btn-pay:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.payment-modal {
+  background-color: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.amount-due {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.amount-due span {
+  color: #64748B;
+  font-size: 0.85rem;
+}
+
+.amount-due h3 {
+  font-size: 2.25rem;
+  margin: 4px 0 0;
+  color: #0F172A;
+}
+
+.cash-input-group {
+  margin-bottom: 16px;
+}
+
+.cash-input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.cash-input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1.25rem;
+  text-align: right;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cash-input-group input:focus {
+  border-color: #16A34A;
+}
+
+.quick-amounts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.quick-amounts button {
+  padding: 8px 0;
+  background-color: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.quick-amounts button:hover {
+  background-color: #E2E8F0;
+}
+
+.change-due {
+  background-color: #F0FDF4;
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.change-due span {
+  color: #16A34A;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.change-due h3 {
+  font-size: 1.75rem;
+  margin: 4px 0 0;
+}
+
+.modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  flex: 2;
+  padding: 10px;
+  background-color: #16A34A;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-confirm:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+/* Below 768px the side-by-side layout can't work: the cart panel alone is
+   380px wide, so it overflowed the screen and crushed the product grid.
+   Stack products on top, cart below, and let the page scroll vertically. */
+@media (max-width: 768px) {
+  .pos-content {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .pos-products-panel {
+    flex: none;
+    overflow: visible;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  /* The grid keeps its own scroll, capped so the cart stays within one
+     swipe's reach below it. */
+  .products-grid {
+    flex: none;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    max-height: 45vh;
+    overflow-y: auto;
+  }
+
+  .product-img-wrapper {
+    height: 90px;
+  }
+
+  .pos-cart-panel {
+    flex: none;
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid #E2E8F0;
+  }
+
+  /* Natural height with an internal cap: a long cart scrolls inside the
+     panel instead of pushing the totals and Pay button out of reach. */
+  .cart-items {
+    flex: none;
+    min-height: 110px;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  /* The payment buttons are laid out with an inline 4/5-column grid in the
+     JSX; !important lets them reflow instead of squeezing on narrow phones. */
+  .payment-methods {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)) !important;
+  }
+
+  .pos-topbar {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Secondary chrome that doesn't fit a small phone alongside the essentials. */
+  .pos-cashier {
+    display: none;
+  }
+
+  .pos-products-panel a[href="/pos"] {
+    display: none !important; /* "Fullscreen POS" link (inline-styled flex) */
+  }
+}
