@@ -101,6 +101,8 @@ const allowedOrigins = (process.env.CORS_ORIGINS || process.env.FRONTEND_URL || 
 app.use(cors({
   origin: (origin, callback) => {
     // No Origin header = same-origin request, curl, server-to-server, etc. — allow.
+    console.log('Request Origin:', origin);
+console.log('Allowed Origins:', allowedOrigins);
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
     if (process.env.NODE_ENV !== 'production' && /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
